@@ -417,7 +417,13 @@ button {
 }
 
 .committee-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.committee-grid > .officer-card {
+  flex: 0 1 calc((100% - 4.5rem) / 4);
 }
 
 .committee-leadership {
@@ -494,12 +500,14 @@ button {
 
 .officer-photo {
   width: 100%;
+  max-width: 220px;
   aspect-ratio: 4 / 5;
   object-fit: cover;
   border-radius: 18px;
   border: 1px solid rgba(13, 55, 108, 0.08);
   background: #f5f8ff;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem;
+  display: block;
 }
 
 .officer-card h3 {
