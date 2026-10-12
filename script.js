@@ -19,3 +19,30 @@ if (navToggle && nav) {
     });
   });
 }
+
+document.querySelectorAll('.term-button').forEach((button) => {
+  button.addEventListener('click', () => {
+    const contentId = button.getAttribute('aria-controls');
+    const content = contentId ? document.getElementById(contentId) : null;
+
+    if (!content) {
+      return;
+    }
+
+    const archive = button.getAttribute('data-term-archive');
+    const buttons = archive
+      ? document.querySelectorAll(`.term-button[data-term-archive="${archive}"]`)
+      : [button];
+
+    buttons.forEach((termButton) => {
+      const isSelected = termButton === button;
+      const termContentId = termButton.getAttribute('aria-controls');
+      const termContent = termContentId ? document.getElementById(termContentId) : null;
+
+      termButton.setAttribute('aria-expanded', String(isSelected));
+      if (termContent) {
+        termContent.hidden = !isSelected;
+      }
+    });
+  });
+});
